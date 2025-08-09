@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal - Impetus Dominion Academy CBT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
+</head>
+<body class="min-h-screen bg-gray-50 student-page">
+    <!-- Navigation -->
+    <nav class="gradient-bg shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <div class="flex items-center">
+                    <div class="flex-shrink-0">
+                        <a href="#" class="flex items-center text-white font-bold text-xl">
+                            <i class="fas fa-graduation-cap mr-3 text-2xl"></i>
+                            <span class="hidden md:inline">Impetus Dominion Academy</span>
+                            <span class="md:hidden">IDA</span>
+                        </a>
+                    </div>
+                </div>
+                <div class="hidden md:block">
+                    <div class="ml-4 flex items-center space-x-4">
+                        <a href="index.html" class="text-white hover:bg-indigo-700 px-3 py-2 rounded-md text-sm font-medium transition-colors flex items-center">
+                            <i class="fas fa-home mr-2"></i>
+                            Back to Home
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <!-- Exam Entry View -->
+        <div id="examEntryView" class="content-view">
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-2xl">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden exam-card">
+                        <div class="gradient-bg p-6 text-center">
+                            <h2 class="text-2xl font-bold text-white flex items-center justify-center">
+                                <i class="fas fa-user-graduate mr-3"></i>
+                                Student Exam Entry
+                            </h2>
+                        </div>
+                        <div class="p-6">
+                            <form id="studentEntryForm" class="space-y-6">
+                                <div>
+                                    <label for="studentName" class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-user mr-2 text-indigo-600"></i>
+                                        Student Name
+                                    </label>
+                                    <input type="text" id="studentName" placeholder="Enter your full name" required
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base">
+                                </div>
+                                
+                                <div>
+                                    <label for="examPassword" class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-lock mr-2 text-indigo-600"></i>
+                                        Exam Password
+                                    </label>
+                                    <input type="password" id="examPassword" placeholder="Enter exam password" required
+                                        class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 text-base">
+                                </div>
+                                
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1 flex items-center">
+                                        <i class="fas fa-file-alt mr-2 text-indigo-600"></i>
+                                        Upload Exam File
+                                    </label>
+                                    <div class="file-upload">
+                                        <input type="file" id="examFile" class="file-upload-input" accept=".question" required>
+                                        <label for="examFile" id="fileUploadLabel" class="file-upload-label">
+                                            <div class="text-center">
+                                                <i class="fas fa-cloud-upload-alt text-3xl text-gray-400 mb-2"></i>
+                                                <p class="text-sm text-gray-600">Click to upload or drag and drop</p>
+                                                <p class="text-xs text-gray-500 mt-1">.question files only</p>
+                                            </div>
+                                        </label>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <button type="button" id="startExamBtn"
+                                        class="w-full gradient-bg text-white py-3 px-4 rounded-lg font-bold text-lg hover:opacity-90 transition-opacity flex items-center justify-center">
+                                        <i class="fas fa-play mr-3"></i>
+                                        Start Exam
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                    <!-- Instructions Card -->
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden mt-6 exam-card">
+                        <div class="bg-gray-50 p-4 border-b border-gray-200">
+                            <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                                <i class="fas fa-info-circle mr-2 text-indigo-600"></i>
+                                Instructions
+                            </h3>
+                        </div>
+                        <div class="p-6">
+                            <ul class="space-y-3">
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Enter your full name as it appears on your student record</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Use the exam password provided by your teacher</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Upload the exam file (.question) given to you</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Make sure you have a stable internet connection</span>
+                                </li>
+                                <li class="flex items-start">
+                                    <i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i>
+                                    <span class="text-gray-700">Read all questions carefully before answering</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Exam Interface View -->
+        <div id="examInterfaceView" class="content-view hidden">
+            <!-- Exam Header -->
+            <div class="bg-white rounded-xl shadow-md p-4 mb-6">
+                <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                    <div class="mb-4 md:mb-0">
+                        <h3 class="text-lg font-bold text-gray-900" id="examTitle">Sample Exam</h3>
+                        <p class="text-sm text-gray-500">Student: <span id="displayStudentName" class="font-medium">John Doe</span></p>
+                    </div>
+                    
+                    <div class="flex items-center justify-center mb-4 md:mb-0">
+                        <div class="bg-indigo-100 text-indigo-800 px-4 py-2 rounded-full font-medium">
+                            <span id="currentQuestion">1</span> of <span id="totalQuestions">20</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center justify-end">
+                        <div class="bg-red-100 text-red-800 px-4 py-2 rounded-full font-medium flex items-center timer-pulse">
+                            <i class="fas fa-clock mr-2"></i>
+                            <span id="examTimer">60:00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Question Display -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden mb-6">
+                <div class="p-6">
+                    <div id="questionContent">
+                        <div class="question-text mb-6">
+                            <h4 class="text-xl font-bold text-gray-800 mb-3">Question 1:</h4>
+                            <p class="text-gray-700 text-lg">What is the capital of France?</p>
+                        </div>
+                        <div class="question-image mb-6 hidden">
+                            <img src="" alt="Question Image" class="w-full rounded-lg">
+                        </div>
+                        <div class="question-answers space-y-3" id="questionAnswers">
+                            <div class="flex items-center">
+                                <input type="radio" name="answer" id="option1" value="paris" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500">
+                                <label for="option1" class="ml-3 block text-gray-700 text-base">Paris</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="answer" id="option2" value="london" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500">
+                                <label for="option2" class="ml-3 block text-gray-700 text-base">London</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="answer" id="option3" value="berlin" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500">
+                                <label for="option3" class="ml-3 block text-gray-700 text-base">Berlin</label>
+                            </div>
+                            <div class="flex items-center">
+                                <input type="radio" name="answer" id="option4" value="madrid" class="h-5 w-5 text-indigo-600 focus:ring-indigo-500">
+                                <label for="option4" class="ml-3 block text-gray-700 text-base">Madrid</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Navigation Controls -->
+            <div class="flex justify-between mb-6">
+                <button id="prevBtn" disabled
+                    class="inline-flex items-center px-4 py-2 border border-gray-300 shadow-sm text-base font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                    <i class="fas fa-chevron-left mr-2"></i> Previous
+                </button>
+                <div class="flex space-x-4">
+                    <button id="markBtn"
+                        class="inline-flex items-center px-4 py-2 border border-yellow-300 shadow-sm text-base font-medium rounded-md text-yellow-700 bg-yellow-50 hover:bg-yellow-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500">
+                        <i class="fas fa-bookmark mr-2"></i> Mark
+                    </button>
+                    <button id="nextBtn"
+                        class="inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Next <i class="fas fa-chevron-right ml-2"></i>
+                    </button>
+                    <button id="submitBtn" class="hidden inline-flex items-center px-4 py-2 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500">
+                        <i class="fas fa-check mr-2"></i> Submit Exam
+                    </button>
+                </div>
+            </div>
+
+            <!-- Question Navigator -->
+            <div class="bg-white rounded-xl shadow-md overflow-hidden">
+                <div class="p-4 border-b border-gray-200">
+                    <h3 class="text-lg font-medium text-gray-900 flex items-center">
+                        <i class="fas fa-list mr-2 text-indigo-600"></i>
+                        Question Navigator
+                    </h3>
+                </div>
+                <div class="p-4">
+                    <div class="grid grid-cols-5 sm:grid-cols-8 md:grid-cols-10 gap-2" id="questionNavigator">
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-indigo-600 text-white font-medium flex items-center justify-center" onclick="goToQuestion(1)">1</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(2)">2</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(3)">3</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(4)">4</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(5)">5</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(6)">6</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(7)">7</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(8)">8</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(9)">9</button>
+                        <button class="question-nav-btn w-10 h-10 rounded-full bg-gray-200 text-gray-700 font-medium flex items-center justify-center" onclick="goToQuestion(10)">10</button>
+                    </div>
+                    <div class="mt-4 flex flex-wrap gap-4">
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-indigo-600 mr-2"></div>
+                            <span class="text-sm text-gray-600">Current</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-green-500 mr-2"></div>
+                            <span class="text-sm text-gray-600">Answered</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-yellow-500 mr-2"></div>
+                            <span class="text-sm text-gray-600">Marked</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-4 h-4 rounded-full bg-gray-200 mr-2"></div>
+                            <span class="text-sm text-gray-600">Unanswered</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results View -->
+        <div id="resultsView" class="content-view hidden">
+            <div class="flex flex-col items-center">
+                <div class="w-full max-w-2xl">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden exam-card">
+                        <div class="bg-green-600 p-6 text-center">
+                            <h2 class="text-2xl font-bold text-white flex items-center justify-center">
+                                <i class="fas fa-trophy mr-3"></i>
+                                Exam Completed!
+                            </h2>
+                        </div>
+                        <div class="p-8 text-center">
+                            <div class="result-score mb-8">
+                                <div id="scoreCircle" class="score-circle mb-4">
+                                    <span class="text-3xl font-bold text-gray-800" id="scorePercentage"></span>
+                                </div>
+                                <h3 id="congratsMessage" class="text-2xl font-bold text-gray-800 mb-2">Congratulations, <span id="resultStudentName" class="text-indigo-600"></span>!</h3>
+                                <p class="text-gray-600">You scored <strong id="scoreDetails" class="text-green-600"></strong> questions correctly.</p>
+                            </div>
+
+                            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                                <button id="viewGradeBtn"
+                                    class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-chart-bar mr-2"></i> View Detailed Grade
+                                </button>
+                                <button id="backToEntryBtn"
+                                    class="inline-flex items-center justify-center px-6 py-3 border border-gray-300 text-base font-medium rounded-md shadow-sm text-gray-700 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                    <i class="fas fa-redo mr-2"></i> Take Another Exam
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Grade View Modal -->
+        <div id="gradeModal" class="fixed z-10 inset-0 overflow-y-auto hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+            <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
+                <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                        <div class="sm:flex sm:items-start">
+                            <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left w-full">
+                                <h3 class="text-lg leading-6 font-medium text-gray-900 flex items-center" id="modal-title">
+                                    <i class="fas fa-chart-line mr-2 text-indigo-600"></i>
+                                    Detailed Grade Report
+                                </h3>
+                                <div class="mt-4">
+                                    <form id="gradePasswordForm" class="mb-6">
+                                        <div class="flex">
+                                            <input type="password" id="gradePasswordModal" placeholder="Enter grade password to view detailed analytics"
+                                                class="flex-1 min-w-0 block w-full px-3 py-2 rounded-l-md border border-gray-300 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
+                                            <button type="button" id="loadGradeDetailsBtn"
+                                                class="inline-flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-r-md shadow-sm text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                                <i class="fas fa-unlock mr-2"></i> View Grade
+                                            </button>
+                                        </div>
+                                    </form>
+                                    <div id="gradeDetails" class="hidden">
+                                        <div class="grade-analytics">
+                                            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                                                <div class="bg-indigo-50 p-4 rounded-lg">
+                                                    <div class="text-3xl font-bold text-indigo-700 text-center" id="yourScore">85%</div>
+                                                    <div class="text-sm text-indigo-600 text-center mt-1">Your Score</div>
+                                                </div>
+                                                <div class="bg-gray-50 p-4 rounded-lg">
+                                                    <div class="text-3xl font-bold text-gray-700 text-center" id="classAverage">78%</div>
+                                                    <div class="text-sm text-gray-600 text-center mt-1">Class Average</div>
+                                                </div>
+                                            </div>
+                                            <div class="mb-6">
+                                                <h4 class="text-lg font-medium text-gray-900 mb-3">Performance Breakdown</h4>
+                                                <div class="space-y-4">
+                                                    <div>
+                                                        <div class="flex justify-between mb-1">
+                                                            <span class="text-sm font-medium text-gray-700">Multiple Choice Questions</span>
+                                                            <span class="text-sm font-medium text-gray-700">90%</span>
+                                                        </div>
+                                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                            <div class="bg-green-500 h-2.5 rounded-full" style="width: 90%"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div>
+                                                        <div class="flex justify-between mb-1">
+                                                            <span class="text-sm font-medium text-gray-700">True/False Questions</span>
+                                                            <span class="text-sm font-medium text-gray-700">75%</span>
+                                                        </div>
+                                                        <div class="w-full bg-gray-200 rounded-full h-2.5">
+                                                            <div class="bg-yellow-500 h-2.5 rounded-full" style="width: 75%"></div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                        <button type="button" id="closeGradeModalBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                            Close
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- License Modal -->
+    <div id="licenseModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="flex items-center justify-center min-h-screen px-4 text-center">
+            <div class="fixed inset-0 bg-gray-700 bg-opacity-75 transition-opacity" aria-hidden="true"></div>
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all my-8 sm:align-middle sm:max-w-lg sm:w-full">
+                <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
+                    <div class="sm:flex sm:items-start">
+                        <div class="mx-auto flex-shrink-0 flex items-center justify-center h-12 w-12 rounded-full bg-indigo-100 sm:mx-0 sm:h-10 sm:w-10">
+                            <i class="fas fa-key text-indigo-600"></i>
+                        </div>
+                        <div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+                            <h3 class="text-lg leading-6 font-medium text-gray-900" id="licenseModalTitle">License Required</h3>
+                            <div class="mt-2">
+                                <p class="text-sm text-gray-500" id="licenseModalMessage">Please enter your license key to continue.</p>
+                                <input type="text" id="licenseKeyInput" class="mt-4 block w-full px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500" placeholder="Enter license key">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                    <button type="button" id="submitLicenseBtn" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:ml-3 sm:w-auto sm:text-sm">
+                        Activate
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/storage.js"></script>
+    <script src="js/utils.js"></script>
+    <script src="js/license.js"></script>
+    <script src="js/file.js"></script>
+    <script src="js/student.js"></script>
+</body>
+</html>

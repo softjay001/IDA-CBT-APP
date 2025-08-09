@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impetus Dominion Academy CBT</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body class="min-h-screen flex flex-col">
+    <!-- Main Content -->
+    <main class="flex-grow">
+        <div class="bg-[url('build.jpg')] bg-cover bg-center text-white">
+            <div class="container mx-auto px-4 py-16 md:py-24 bg-black/50">
+                <div class="max-w-4xl mx-auto text-center">
+                    <div class="w-24 h-24 mx-auto mb-6 rounded-full bg-white/10 flex items-center justify-center glow">
+                        <i class="fas fa-graduation-cap text-4xl text-white"></i>
+                    </div>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Impetus Dominion Academy</h1>
+                    <h2 class="text-xl md:text-2xl font-medium text-white/90 mb-8">Computer Based Testing System</h2>
+                    <p class="text-lg text-white/80 max-w-2xl mx-auto mb-12">
+                        A modern platform for seamless examination experience with real-time analytics and performance tracking.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="container mx-auto px-4 py-12 md:py-20 -mt-16 md:-mt-24">
+            <div class="max-w-6xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <!-- Teacher Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect teacher-card cursor-pointer" onclick="selectMode('teacher')">
+                        <div class="p-8">
+                            <div class="w-16 h-16 mb-6 rounded-full bg-blue-100 flex items-center justify-center">
+                                <i class="fas fa-chalkboard-teacher text-2xl text-blue-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Teacher Portal</h3>
+                            <p class="text-gray-600 mb-6">Create exams, manage questions, and view student results with comprehensive analytics.</p>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-plus-circle text-blue-500 mr-3"></i>
+                                    <span class="text-gray-700">Create and manage exams</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-chart-bar text-blue-500 mr-3"></i>
+                                    <span class="text-gray-700">Detailed performance analytics</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-download text-blue-500 mr-3"></i>
+                                    <span class="text-gray-700">Export results in multiple formats</span>
+                                </div>
+                            </div>
+                            <button onclick="window.location.href='teacher.html'" 
+    class="mt-8 w-full py-3 px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition duration-200">
+    Access Teachers Portal
+    <i class="fas fa-arrow-right ml-2"></i>
+</button>
+
+                        </div>
+                    </div>
+
+                    <!-- Student Card -->
+                    <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover-effect student-card cursor-pointer" onclick="selectMode('student.')">
+                        <div class="p-8">
+                            <div class="w-16 h-16 mb-6 rounded-full bg-green-100 flex items-center justify-center">
+                                <i class="fas fa-user-graduate text-2xl text-green-600"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-gray-800 mb-3">Student Portal</h3>
+                            <p class="text-gray-600 mb-6">Take exams, view results, and track your academic progress with intuitive dashboards.</p>
+                            <div class="space-y-3">
+                                <div class="flex items-center">
+                                    <i class="fas fa-file-alt text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Take timed or untimed exams</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-clock text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Real-time progress tracking</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-trophy text-green-500 mr-3"></i>
+                                    <span class="text-gray-700">Detailed performance reports</span>
+                                </div>
+                            </div>
+                            <button onclick="window.location.href='student.html'" 
+    class="mt-8 w-full py-3 px-6 bg-green-600 hover:bg-green-700 text-white font-medium rounded-lg transition duration-200">
+    Access Student Portal
+    <i class="fas fa-arrow-right ml-2"></i>
+</button>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-50 border-t border-gray-200 py-8">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p class="text-gray-600">
+                        <i class="fas fa-code mr-2"></i>
+                        Dev J
+                    </p>
+                </div>
+                <div class="flex space-x-6">
+                    <a href="#" class="text-gray-500 hover:text-indigo-600 transition">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-indigo-600 transition">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-indigo-600 transition">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="#" class="text-gray-500 hover:text-indigo-600 transition">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+            </div>
+            <div class="mt-6 text-center text-sm text-gray-500">
+                Developed by Jeremiah
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/index.js"></script>
+</body>
+</html>
